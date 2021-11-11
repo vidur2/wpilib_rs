@@ -1,43 +1,57 @@
 #[cxx::bridge]
 mod ffi{
+    extern "Rust"{
+        fn robot_init();
+        fn robot_periodic();
+        fn autonomous_init();
+        fn autonomous_periodic();
+        fn teleop_init();
+        fn teleop_periodic();
+        fn test_init();
+        fn test_periodic();
+    }
     unsafe extern "C++"{
-        include!("wpilib_rs/header_files/Robot.h");
+        include!("wpilib_rs/header_files/frc/Spark.h");
 
-        type Robot;
+        type Spark;
+        fn spark(channel: u8) -> UniquePtr<Spark>;
     }
+
 }
 
-use crate::ffi::Robot;
+use crate::ffi::Spark;
 
-impl Robot{
-    fn robot_init(){
-        // Robot init
-    }
-    fn robot_periodic(){
-        // Robot Periodic
-    }
-    fn autonomous_init(){
-        // autonomous init
-    }
-    fn autonomous_periodic(){
-        // autonomous periodic
-    }
-    fn teleop_init(){
-        // teleop init
-    }
-    fn teleop_periodic(){
-        // teleop periodic
-    }
+const MOTOR1: UniquePtr<Spark> = spark(1);
+const MOTOR2: UniquePtr<Spark> = spark(2);
+
+fn robot_init(){
+
 }
 
-// impl TimedRobot for Robot {
-//     fn robot_init(){
-//         println!("Shit")
-//     }
-//     fn robot_periodic(){
-//         println!("Shit")
-//     }
-// }
-fn main() {
-    println!("Hello World")
+fn robot_periodic(){
+
+}
+
+fn autonomous_init(){
+
+}
+
+fn autonomous_periodic(){
+
+}
+
+fn teleop_init(){
+
+}
+
+fn teleop_periodic(){
+
+}
+
+fn test_init(){
+
+}
+
+fn test_periodic(){
+
 }
