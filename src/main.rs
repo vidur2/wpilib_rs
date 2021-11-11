@@ -13,13 +13,15 @@ mod ffi{
         include!("wpilib_rs/header_files/Robot.h");
 
         type TimedRobot = crate::rust_implementation::TimedRobot;
+        fn robot_init();
+        fn robot_periodic();
     }
 
 }
 
 use crate::ffi::TimedRobot;
 
-impl TimedRobot{
+impl TimedRobot for Robot{
     fn robot_init(){
         println!("Shit")
     }
@@ -27,6 +29,8 @@ impl TimedRobot{
         println!("Shit")
     }
 }
+
+
 fn main() {
     println!("Hello World")
 }
