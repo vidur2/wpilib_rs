@@ -17,7 +17,7 @@ mod ffi{
 
 }
 
-use ffi::TimedRobot;
+use crate::ffi::TimedRobot;
 
 impl TimedRobot{
     fn robot_init(){
