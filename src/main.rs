@@ -3,13 +3,13 @@ mod ffi{
     unsafe extern "C++"{
         include!("wpilib_rs/header_files/Robot.h");
 
-        type TimedRobot;
+        type Robot;
     }
 }
 
-use crate::ffi::TimedRobot;
+use crate::ffi::Robot;
 
-impl TimedRobot{
+impl Robot{
     fn robot_init(){
         // Robot init
     }
