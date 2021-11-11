@@ -1,36 +1,57 @@
-mod rust_implementation;
-
-use cxx::{type_id, ExternType};
-
-unsafe impl ExternType for rust_implementation::TimedRobot{
-    type Id = type_id!("wpilib_rust_impl:TimedRobot");
-    type Kind = cxx::Kind::Trivial;
-}
-
-#[cxx::bridge(namespace="wpilib_rust_impl")]
+#[cxx::bridge]
 mod ffi{
-    unsafe extern "C++"{
-        include!("wpilib_rs/header_files/Robot.h");
-
-        type TimedRobot = crate::rust_implementation::TimedRobot;
+    extern "Rust"{
         fn robot_init();
         fn robot_periodic();
+        fn autonomous_init();
+        fn autonomous_periodic();
+        fn teleop_init();
+        fn teleop_periodic();
+        fn test_init();
+        fn test_periodic();
+    }
+    unsafe extern "C++"{
+        include!("wpilib_rs/header_files/frc/Spark.h");
+
+        type Spark;
+        fn spark(channel: u8) -> UniquePtr<Spark>;
     }
 
 }
 
-use crate::ffi::TimedRobot;
+use crate::ffi::Spark;
 
-impl TimedRobot for Robot{
-    fn robot_init(){
-        println!("Shit")
-    }
-    fn robot_periodic(){
-        println!("Shit")
-    }
+const MOTOR1: UniquePtr<Spark> = spark(1);
+const MOTOR2: UniquePtr<Spark> = spark(2);
+
+fn robot_init(){
+
 }
 
+fn robot_periodic(){
 
-fn main() {
-    println!("Hello World")
+}
+
+fn autonomous_init(){
+
+}
+
+fn autonomous_periodic(){
+
+}
+
+fn teleop_init(){
+
+}
+
+fn teleop_periodic(){
+
+}
+
+fn test_init(){
+
+}
+
+fn test_periodic(){
+
 }
