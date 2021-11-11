@@ -1,9 +1,9 @@
 #[cxx::bridge]
 mod ffi{
     unsafe extern "C++"{
-        include!("wpilib_rs/Robot.h");
+        include!("wpilib_rs/header_files/Robot.h");
 
-        pub type TimedRobot;
+        type TimedRobot;
     }
 }
 
